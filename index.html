@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ArtExpress: A Cultural Odyssey on Rails</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="nav__container">
+            <div class="nav__brand">
+                <span class="nav__logo">🚂</span>
+                <span class="nav__title">ArtExpress</span>
+            </div>
+            <div class="nav__menu">
+                <a href="#hero" class="nav__link">Home</a>
+                <a href="#ai-planner" class="nav__link">AI Planner</a>
+                <a href="#dashboard" class="nav__link">Live Dashboard</a>
+                <a href="#digital-twin" class="nav__link">Virtual Tours</a>
+                <a href="#gamification" class="nav__link">Learning Hub</a>
+                <a href="#marketplace" class="nav__link">Artisan Market</a>
+                <a href="#social" class="nav__link">Community</a>
+            </div>
+            <button class="theme-toggle" id="themeToggle">🌙</button>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="hero" class="hero">
+        <div class="hero__container">
+            <div class="hero__content">
+                <h1 class="hero__title">
+                    <span class="gradient-text">Cultural Odyssey</span>
+                    <span class="hero__subtitle">on Rails</span>
+                </h1>
+                <p class="hero__description">
+                    Experience India's traditional art forms through AI-powered luxury train journeys. 
+                    Discover, learn, and connect with authentic cultural heritage.
+                </p>
+                <div class="hero__actions">
+                    <button class="btn btn--primary hero__cta" onclick="startCulturalProfiling()">
+                        🧬 Create Cultural DNA
+                    </button>
+                    <button class="btn btn--outline hero__explore" onclick="scrollToSection('ai-planner')">
+                        🚀 Explore Journeys
+                    </button>
+                </div>
+            </div>
+            <div class="hero__visual">
+                <div class="train-animation">
+                    <div class="train">🚂</div>
+                    <div class="track"></div>
+                </div>
+                <div class="cultural-badges">
+                    <div class="badge badge--art">🎨 Art Forms</div>
+                    <div class="badge badge--heritage">🏛️ Heritage</div>
+                    <div class="badge badge--sustainability">🌱 Sustainable</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Cultural DNA Profiler Modal -->
+    <div id="cultural-dna-modal" class="modal">
+        <div class="modal__content">
+            <div class="modal__header">
+                <h3>🧬 Cultural DNA Profiler</h3>
+                <button class="modal__close" onclick="closeCulturalProfiling()">&times;</button>
+            </div>
+            <div class="modal__body">
+                <div class="profiler-step" id="step-1">
+                    <h4>What type of cultural experiences do you prefer?</h4>
+                    <div class="preference-grid">
+                        <label class="preference-card">
+                            <input type="checkbox" name="preference" value="traditional-art">
+                            <span class="preference-icon">🎨</span>
+                            <span>Traditional Art</span>
+                        </label>
+                        <label class="preference-card">
+                            <input type="checkbox" name="preference" value="music-dance">
+                            <span class="preference-icon">🎭</span>
+                            <span>Music & Dance</span>
+                        </label>
+                        <label class="preference-card">
+                            <input type="checkbox" name="preference" value="handicrafts">
+                            <span class="preference-icon">🏺</span>
+                            <span>Handicrafts</span>
+                        </label>
+                        <label class="preference-card">
+                            <input type="checkbox" name="preference" value="history">
+                            <span class="preference-icon">🏛️</span>
+                            <span>History</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="profiler-step hidden" id="step-2">
+                    <h4>What's your travel style?</h4>
+                    <div class="preference-grid">
+                        <label class="preference-card">
+                            <input type="radio" name="travel-style" value="luxury">
+                            <span class="preference-icon">👑</span>
+                            <span>Luxury</span>
+                        </label>
+                        <label class="preference-card">
+                            <input type="radio" name="travel-style" value="eco-friendly">
+                            <span class="preference-icon">🌱</span>
+                            <span>Eco-Friendly</span>
+                        </label>
+                        <label class="preference-card">
+                            <input type="radio" name="travel-style" value="immersive">
+                            <span class="preference-icon">🤝</span>
+                            <span>Community Immersive</span>
+                        </label>
+                    </div>
+                </div>
+                <div class="profiler-step hidden" id="step-3">
+                    <h4>Learning preferences?</h4>
+                    <div class="preference-grid">
+                        <label class="preference-card">
+                            <input type="radio" name="learning" value="hands-on">
+                            <span class="preference-icon">✋</span>
+                            <span>Hands-on Workshops</span>
+                        </label>
+                        <label class="preference-card">
+                            <input type="radio" name="learning" value="virtual">
+                            <span class="preference-icon">🥽</span>
+                            <span>Virtual Reality</span>
+                        </label>
+                        <label class="preference-card">
+                            <input type="radio" name="learning" value="guided">
+                            <span class="preference-icon">👨‍🏫</span>
+                            <span>Guided Tours</span>
+                        </label>
+                    </div>
+                </div>
+            </div>
+            <div class="modal__footer">
+                <button class="btn btn--secondary" id="prev-step" onclick="previousStep()" style="display: none;">Previous</button>
+                <button class="btn btn--primary" id="next-step" onclick="nextStep()">Next</button>
+                <button class="btn btn--primary hidden" id="generate-dna" onclick="generateCulturalDNA()">Generate My DNA</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- AI Journey Planner -->
+    <section id="ai-planner" class="section">
+        <div class="container">
+            <div class="section__header">
+                <h2>🤖 AI-Powered Journey Architect</h2>
+                <p>Personalized luxury train recommendations based on your Cultural DNA</p>
+            </div>
+            
+            <div class="ai-planner__grid">
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Your Cultural DNA</h3>
+                        <div id="cultural-dna-display" class="dna-display">
+                            <div class="dna-strand">
+                                <span class="dna-base">🎨</span>
+                                <span class="dna-base">🏛️</span>
+                                <span class="dna-base">🌱</span>
+                                <span class="dna-base">👑</span>
+                            </div>
+                            <p>Complete your Cultural DNA profiling to see personalized recommendations</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card__body">
+                        <h3>Smart Filters</h3>
+                        <div class="filter-group">
+                            <select class="form-control" id="duration-filter">
+                                <option value="">Journey Duration</option>
+                                <option value="7">7 Days</option>
+                                <option value="8">8 Days</option>
+                            </select>
+                            <select class="form-control" id="season-filter">
+                                <option value="">Preferred Season</option>
+                                <option value="winter">Winter (Oct-Mar)</option>
+                                <option value="monsoon">Monsoon (Jun-Sep)</option>
+                            </select>
+                            <select class="form-control" id="art-focus">
+                                <option value="">Art Form Focus</option>
+                                <option value="warli">Warli Paintings</option>
+                                <option value="madhubani">Madhubani Art</option>
+                                <option value="blue-pottery">Blue Pottery</option>
+                                <option value="kalamkari">Kalamkari</option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="trains-grid" id="trains-grid">
+                <!-- Train recommendations will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Live Cultural Dashboard -->
+    <section id="dashboard" class="section section--dark">
+        <div class="container">
+            <div class="section__header">
+                <h2>📊 Real-Time Cultural Intelligence</h2>
+                <p>Live insights from across India's cultural landscape</p>
+            </div>
+
+            <div class="dashboard-grid">
+                <div class="card dashboard-card">
+                    <div class="card__body">
+                        <h3>🌡️ Current Conditions</h3>
+                        <div class="metrics-grid" id="current-metrics">
+                            <!-- Real-time metrics -->
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card dashboard-card">
+                    <div class="card__body">
+                        <h3>📈 Visitor Analytics</h3>
+                        <canvas id="visitor-chart" height="200"></canvas>
+                    </div>
+                </div>
+
+                <div class="card dashboard-card">
+                    <div class="card__body">
+                        <h3>🎭 Cultural Engagement</h3>
+                        <canvas id="engagement-chart" height="200"></canvas>
+                    </div>
+                </div>
+
+                <div class="card dashboard-card">
+                    <div class="card__body">
+                        <h3>🌱 Sustainability Tracker</h3>
+                        <div class="sustainability-metrics">
+                            <div class="metric">
+                                <span class="metric__value">8.5</span>
+                                <span class="metric__label">Avg Eco Score</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric__value">2.3k</span>
+                                <span class="metric__label">CO₂ Saved (tons)</span>
+                            </div>
+                            <div class="metric">
+                                <span class="metric__value">95%</span>
+                                <span class="metric__label">Local Sourcing</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Digital Twin Explorer -->
+    <section id="digital-twin" class="section">
+        <div class="container">
+            <div class="section__header">
+                <h2>🥽 Immersive Digital Twin Experience</h2>
+                <p>Step inside luxury trains and cultural sites before you travel</p>
+            </div>
+
+            <div class="digital-twin-grid">
+                <div class="twin-experience">
+                    <div class="twin-preview">
+                        <div class="twin-scene" data-scene="maharajas-express">
+                            <div class="scene-overlay">
+                                <button class="btn btn--primary" onclick="enterVirtualTour('maharajas-express')">
+                                    🚂 Enter Maharajas Express
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Maharajas Express Interior</h3>
+                    <p>Luxury cabins and dining cars in 360°</p>
+                </div>
+
+                <div class="twin-experience">
+                    <div class="twin-preview">
+                        <div class="twin-scene" data-scene="ajanta-caves">
+                            <div class="scene-overlay">
+                                <button class="btn btn--primary" onclick="enterVirtualTour('ajanta-caves')">
+                                    🏛️ Explore Ajanta Caves
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Ajanta Cave Paintings</h3>
+                    <p>Ancient Buddhist art in stunning detail</p>
+                </div>
+
+                <div class="twin-experience">
+                    <div class="twin-preview">
+                        <div class="twin-scene" data-scene="artisan-workshop">
+                            <div class="scene-overlay">
+                                <button class="btn btn--primary" onclick="enterVirtualTour('artisan-workshop')">
+                                    🎨 Visit Artisan Workshop
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    <h3>Traditional Art Workshop</h3>
+                    <p>Watch master artisans at work</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gamified Learning Hub -->
+    <section id="gamification" class="section section--primary">
+        <div class="container">
+            <div class="section__header">
+                <h2>🎮 Cultural Learning Ecosystem</h2>
+                <p>Earn Cultural Karma points and unlock achievements</p>
+            </div>
+
+            <div class="gamification-dashboard">
+                <div class="player-stats">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>Your Progress</h3>
+                            <div class="stats-grid">
+                                <div class="stat">
+                                    <span class="stat__value" id="total-points">1,247</span>
+                                    <span class="stat__label">Cultural Karma</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat__value" id="level">Level 7</span>
+                                    <span class="stat__label">Art Explorer</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat__value" id="achievements">12/25</span>
+                                    <span class="stat__label">Achievements</span>
+                                </div>
+                            </div>
+                            <div class="progress-bar">
+                                <div class="progress-fill" style="width: 68%"></div>
+                            </div>
+                            <p class="progress-text">753 points to Level 8</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="achievements-grid" id="achievements-grid">
+                    <!-- Achievement badges will be populated by JavaScript -->
+                </div>
+
+                <div class="learning-activities">
+                    <div class="card">
+                        <div class="card__body">
+                            <h3>🎯 Daily Challenges</h3>
+                            <div class="challenge-list">
+                                <div class="challenge">
+                                    <span class="challenge__icon">🎨</span>
+                                    <span class="challenge__text">Learn about Warli art traditions</span>
+                                    <span class="challenge__points">+50 points</span>
+                                    <button class="btn btn--sm btn--outline">Start</button>
+                                </div>
+                                <div class="challenge">
+                                    <span class="challenge__icon">📸</span>
+                                    <span class="challenge__text">Share a cultural moment</span>
+                                    <span class="challenge__points">+30 points</span>
+                                    <button class="btn btn--sm btn--outline">Complete</button>
+                                </div>
+                                <div class="challenge">
+                                    <span class="challenge__icon">🤝</span>
+                                    <span class="challenge__text">Connect with an artisan</span>
+                                    <span class="challenge__points">+100 points</span>
+                                    <button class="btn btn--sm btn--primary">Connect</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Artisan Marketplace -->
+    <section id="marketplace" class="section">
+        <div class="container">
+            <div class="section__header">
+                <h2>🛍️ Blockchain-Verified Artisan Marketplace</h2>
+                <p>Connect directly with authentic master artisans</p>
+            </div>
+
+            <div class="marketplace-filters">
+                <select class="form-control" id="art-form-filter">
+                    <option value="">All Art Forms</option>
+                    <option value="warli">Warli</option>
+                    <option value="madhubani">Madhubani</option>
+                    <option value="blue-pottery">Blue Pottery</option>
+                    <option value="kalamkari">Kalamkari</option>
+                </select>
+                <select class="form-control" id="state-filter">
+                    <option value="">All States</option>
+                    <option value="maharashtra">Maharashtra</option>
+                    <option value="bihar">Bihar</option>
+                    <option value="rajasthan">Rajasthan</option>
+                    <option value="andhra-pradesh">Andhra Pradesh</option>
+                </select>
+                <button class="btn btn--primary" onclick="applyMarketplaceFilters()">Filter</button>
+            </div>
+
+            <div class="artisan-grid" id="artisan-grid">
+                <!-- Artisan cards will be populated by JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Culture Network -->
+    <section id="social" class="section section--dark">
+        <div class="container">
+            <div class="section__header">
+                <h2>👥 Cultural Crews Community</h2>
+                <p>Join fellow culture enthusiasts on shared journeys</p>
+            </div>
+
+            <div class="social-dashboard">
+                <div class="card">
+                    <div class="card__body">
+                        <h3>🎯 Find Your Crew</h3>
+                        <div class="crew-finder">
+                            <select class="form-control">
+                                <option>Art Form Interest</option>
+                                <option>Traditional Paintings</option>
+                                <option>Textile Arts</option>
+                                <option>Sculpture & Pottery</option>
+                                <option>Music & Dance</option>
+                            </select>
+                            <select class="form-control">
+                                <option>Journey Duration</option>
+                                <option>Weekend (2-3 days)</option>
+                                <option>Week Long (7 days)</option>
+                                <option>Extended (8+ days)</option>
+                            </select>
+                            <button class="btn btn--primary">Find Crews</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="crew-list">
+                    <div class="crew-card">
+                        <div class="crew-info">
+                            <h4>🎨 Traditional Art Explorers</h4>
+                            <p>Maharajas Express • 7 days • 12 members</p>
+                            <div class="crew-tags">
+                                <span class="tag">Warli</span>
+                                <span class="tag">Madhubani</span>
+                                <span class="tag">Photography</span>
+                            </div>
+                        </div>
+                        <button class="btn btn--outline">Join Crew</button>
+                    </div>
+
+                    <div class="crew-card">
+                        <div class="crew-info">
+                            <h4>🌱 Eco-Cultural Warriors</h4>
+                            <p>Golden Chariot • 8 days • 8 members</p>
+                            <div class="crew-tags">
+                                <span class="tag">Sustainable</span>
+                                <span class="tag">Local Impact</span>
+                                <span class="tag">Handicrafts</span>
+                            </div>
+                        </div>
+                        <button class="btn btn--outline">Join Crew</button>
+                    </div>
+
+                    <div class="crew-card">
+                        <div class="crew-info">
+                            <h4>👑 Heritage Enthusiasts</h4>
+                            <p>Palace on Wheels • 8 days • 15 members</p>
+                            <div class="crew-tags">
+                                <span class="tag">History</span>
+                                <span class="tag">Architecture</span>
+                                <span class="tag">Luxury</span>
+                            </div>
+                        </div>
+                        <button class="btn btn--outline">Join Crew</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__content">
+                <div class="footer__brand">
+                    <span class="footer__logo">🚂</span>
+                    <span class="footer__title">ArtExpress</span>
+                    <p>Preserving culture through sustainable luxury travel</p>
+                </div>
+                <div class="footer__links">
+                    <div class="footer__column">
+                        <h4>Journeys</h4>
+                        <a href="#">Maharajas Express</a>
+                        <a href="#">Palace on Wheels</a>
+                        <a href="#">Golden Chariot</a>
+                        <a href="#">Deccan Odyssey</a>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Culture</h4>
+                        <a href="#">Art Forms</a>
+                        <a href="#">Artisan Network</a>
+                        <a href="#">Digital Archive</a>
+                        <a href="#">Learning Hub</a>
+                    </div>
+                    <div class="footer__column">
+                        <h4>Community</h4>
+                        <a href="#">Cultural Crews</a>
+                        <a href="#">Achievement Center</a>
+                        <a href="#">Sustainability Tracker</a>
+                        <a href="#">Support</a>
+                    </div>
+                </div>
+            </div>
+            <div class="footer__bottom">
+                <p>&copy; 2025 ArtExpress. Powered by AI, Blockchain & Cultural Heritage.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+train_name,station,day,cultural_score,crowd_level,lat,lon
+Maharajas Express,Mumbai,1,9.2,high,19.076,72.8777
+Maharajas Express,Ajanta,2,9.8,medium,20.5519,75.7033
+Maharajas Express,Udaipur,3,9.5,high,24.5854,73.7125
+Maharajas Express,Jodhpur,4,9.0,medium,26.2389,73.0243
+Maharajas Express,Jaipur,5,9.3,high,26.9124,75.7873
+Maharajas Express,Agra,6,9.7,very_high,27.1767,78.0081
+Maharajas Express,Delhi,7,8.8,high,28.7041,77.1025
+Palace on Wheels,Delhi,1,8.8,high,28.7041,77.1025
+Palace on Wheels,Jaipur,2,9.3,high,26.9124,75.7873
+Palace on Wheels,Ranthambore,3,8.5,medium,26.0173,76.5026
+Palace on Wheels,Udaipur,4,9.5,high,24.5854,73.7125
+Palace on Wheels,Jaisalmer,5,9.1,medium,26.9157,70.9083
+Palace on Wheels,Jodhpur,6,9.0,medium,26.2389,73.0243
+Palace on Wheels,Bharatpur,7,8.2,low,27.2152,77.4909
+Palace on Wheels,Agra,8,9.7,very_high,27.1767,78.0081

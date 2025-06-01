@@ -1,0 +1,5 @@
+train_name,route_code,journey_name,duration_days,max_passengers,launch_year,sustainability_score,ai_personalization,real_time_tracking
+Maharajas Express,MEXP001,Heritage of India,7,88,2010,8.5,True,True
+Palace on Wheels,POW001,Royal Rajasthan,8,104,1982,7.8,True,True
+Deccan Odyssey,DOD001,Maharashtra Splendor,8,88,2004,8.2,True,True
+Golden Chariot,GC001,Pride of the South,7,84,2006,8.7,True,True
